@@ -1,55 +1,101 @@
-# README Template
+# Would You Rather Project
 
-Below is a template provided for use when building your README file for students.
+This is the starter code for the final assessment project for Udacity's React & Redux course.
 
-# Project Title
+The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
 
-Project description goes here.
+Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
 
-## Getting Started
+## Data
 
-Instructions for how to get a copy of the project running on your local machine.
+There are two types of objects stored in our database:
 
-### Dependencies
+* Users
+* Questions
 
-```
-Examples here
-```
+### Users
 
-### Installation
+Users include:
 
-Step by step explanation of how to get a dev environment running.
+| Attribute    | Type             | Description           |
+|-----------------|------------------|-------------------         |
+| id                 | String           | The user’s unique identifier |
+| password   | String           | The user’s password in order to log in the application |
+| name          | String           | The user’s first name  and last name     |
+| avatarURL  | String           | The path to the image file |
+| questions | Array | A list of ids of the polling questions this user created|
+| answers      | Object         |  The object's keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options.
 
-List out the steps
+### Questions
 
-```
-Give an example here
-```
+Questions include:
 
-## Testing
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| id                  | String | The question’s unique identifier |
+| author        | String | The author’s unique identifier |
+| timestamp | String | The time when the question was created|
+| optionOne | Object | The first voting option|
+| optionTwo | Object | The second voting option|
 
-Explain the steps needed to run any automated tests
+### Voting Options
 
-### Break Down Tests
+Voting options are attached to questions. They include:
 
-Explain what each test does and why
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| votes             | Array | A list that contains the id of each user who voted for that option|
+| text                | String | The text of the option |
 
-```
-Examples here
-```
+Your code will talk to the database via 4 methods:
 
-## Project Instructions
+* `_getUsers()`
+* `_getQuestions()`
+* `_saveQuestion(question)`
+* `_saveQuestionAnswer(object)`
 
-This section should contain all the student deliverables for this project.
+1) `_getUsers()` Method
 
-## Built With
+*Description*: Get all of the existing users from the database.  
+*Return Value*: Object where the key is the user’s id and the value is the user object.
 
-* [Item1](www.item1.com) - Description of item
-* [Item2](www.item2.com) - Description of item
-* [Item3](www.item3.com) - Description of item
+2) `_getQuestions()` Method
 
-Include all items used to build project.
+*Description*: Get all of the existing questions from the database.  
+*Return Value*: Object where the key is the question’s id and the value is the question object.
 
-## License
+3) `_saveQuestion(question)` Method
 
-[License](LICENSE.txt)
+*Description*: Save the polling question in the database. If one of the parameters are missing, an error is thrown.
+*Parameters*:  Object that includes the following properties: `author`, `optionOneText`, and `optionTwoText`. More details about these properties:
+
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| author | String | The id of the user who posted the question|
+| optionOneText| String | The text of the first option |
+| optionTwoText | String | The text of the second option |
+
+*Return Value*:  An object that has the following properties: `id`, `author`, `optionOne`, `optionTwo`, `timestamp`. More details about these properties:
+
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| id | String | The id of the question that was posted|
+| author | String | The id of the user who posted the question|
+| optionOne | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
+| optionTwo | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
+|timestamp|String | The time when the question was created|
+
+4) `_saveQuestionAnswer(object)` Method
+
+*Description*: Save the answer to a particular polling question in the database. If one of the parameters are missing, an error is thrown.
+*Parameters*: Object that contains the following properties: `authedUser`, `qid`, and `answer`. More details about these properties:
+
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| authedUser | String | The id of the user who answered the question|
+| qid | String | The id of the question that was answered|
+| answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
+
+## Contributing
+
+This repository is the starter code for *all* Udacity students. Therefore, we most likely will not accept pull requests. For details, check out [CONTRIBUTING.md](https://github.com/udacity/reactnd-project-would-you-rather-starter/blob/master/CONTRIBUTING.md).
