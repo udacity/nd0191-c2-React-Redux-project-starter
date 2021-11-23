@@ -34,6 +34,16 @@ let users = {
       "6ni6ok3ym7mf1p33lnez": 'optionOne'
     },
     questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
+  },
+  zoshikanlu: {
+    id: 'zoshikanlu',
+    password:'pass246',
+    name: 'Zenobia Oshikanlu',
+    avatarURL: null,
+    answers: {
+      "xj352vofupe1dqz9emx13r": 'optionOne',
+    },
+    questions: [],
   }
 }
 
