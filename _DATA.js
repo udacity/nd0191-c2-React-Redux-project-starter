@@ -118,7 +118,7 @@ let questions = {
     author: 'mtsamis',
     timestamp: 1493579767190,
     optionOne: {
-      votes: ['mtsamis'],
+      votes: ['mtsamis', 'zoshikanlu'],
       text: 'deploy to production once every two weeks',
     },
     optionTwo: {
