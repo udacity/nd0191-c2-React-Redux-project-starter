@@ -9,9 +9,9 @@ const Dashboard = (props) => {
       <section>
         <h1>New Questions</h1>
         <ul>
-          {unansweredQids.map((unansweredQids) => (
-            <li key={unansweredQids}>
-              <PollCard id={unansweredQids} />
+          {unansweredQids.map((unansweredQid) => (
+            <li key={unansweredQid}>
+              <PollCard id={unansweredQid} />
             </li>
           ))}
         </ul>
@@ -19,9 +19,9 @@ const Dashboard = (props) => {
       <section>
         <h1>Done</h1>
         <ul>
-          {answeredQids.map((answeredQids) => (
-            <li key={answeredQids}>
-              <PollCard id={answeredQids} />
+          {answeredQids.map((answeredQid) => (
+            <li key={answeredQid}>
+              <PollCard id={answeredQid} />
             </li>
           ))}
         </ul>
@@ -32,12 +32,12 @@ const Dashboard = (props) => {
 
 const mapStateToProps = ({ authedUser, users, questions }) => ({
   authedUser,
-  answeredQids: Object.keys(questions).filter((qid) =>
-    Object.keys(users[authedUser].answers).includes(qid)
-  ),
-  unansweredQids: Object.keys(questions).filter(
-    (qid) => !Object.keys(users[authedUser].answers).includes(qid)
-  ),
+  answeredQids: Object.keys(questions)
+    .filter((qid) => Object.keys(users[authedUser].answers).includes(qid))
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp),
+  unansweredQids: Object.keys(questions)
+    .filter((qid) => !Object.keys(users[authedUser].answers).includes(qid))
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp),
 });
 
 export default connect(mapStateToProps)(Dashboard);

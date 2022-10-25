@@ -44,15 +44,8 @@ export function handleAnswerQuestion(qid, answer) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
 
-    //dispatch(toggleTweet(info));
-
     return _saveQuestionAnswer({ authedUser, qid, answer }).then(() =>
       dispatch(answerQuestion({ authedUser, qid, answer }))
     );
-    //   .catch((e) => {
-    //     console.warn("Error in handleToggleTweet: ", e);
-    //     dispatch(toggleTweet(info));
-    //     alert("There was an error liking the tweet. Try again.");
-    //   });
   };
 }

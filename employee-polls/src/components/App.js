@@ -20,10 +20,15 @@ function App(props) {
   useEffect(() => {
     props.dispatch(handleInitialData());
 
+    console.log("app use effect");
+
     if (!onLoginPage && props.authedUser === null) {
       navigate("/login");
     }
   }, []);
+
+  console.log(props.loading);
+  console.log(props.authedUser);
 
   return (
     <Fragment>

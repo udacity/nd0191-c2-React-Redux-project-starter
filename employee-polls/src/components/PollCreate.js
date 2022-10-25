@@ -39,6 +39,7 @@ const PollCreate = (props) => {
             placeholder="Option One"
             value={firstOptionText}
             onChange={handleFirstOptionChange}
+            data-testid="option-one-input"
           />
         </div>
         <div>
@@ -47,6 +48,7 @@ const PollCreate = (props) => {
             placeholder="Option Two"
             value={secondOptionText}
             onChange={handleSecondOptionChange}
+            data-testid="option-two-input"
           />
         </div>
         <button

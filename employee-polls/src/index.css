@@ -74,6 +74,12 @@ li {
   margin: 4px;
 }
 
+.avatar-large {
+  height: 80px;
+  border-radius: 40px;
+  margin: 10px;
+}
+
 .tweet {
   width: 100%;
   max-width: 590px;

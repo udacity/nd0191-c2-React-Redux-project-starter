@@ -14,7 +14,15 @@ const withRouter = (Component) => {
 };
 
 const Poll = (props) => {
-  const { authedUser, question, dispatch } = props;
+  const { authedUser, authorUser, question, dispatch } = props;
+
+  if (!question) {
+    return (
+      <div>
+        <h1>404 Question Not Found</h1>
+      </div>
+    );
+  }
 
   const answeredOptionOne = question.optionOne.votes.includes(authedUser);
   const answeredOptionTwo = question.optionTwo.votes.includes(authedUser);
@@ -29,9 +37,28 @@ const Poll = (props) => {
     dispatch(handleAnswerQuestion(question.id, "optionTwo"));
   };
 
+  const optionOneVotes = question.optionOne.votes.length;
+  const optionTwoVotes = question.optionTwo.votes.length;
+  const totalVotes = optionOneVotes + optionTwoVotes;
+
+  const optionOneVotePercentage = Math.round(
+    (optionOneVotes / totalVotes) * 100
+  );
+
+  const optionTwoVotePercentage = Math.round(
+    (optionTwoVotes / totalVotes) * 100
+  );
+
   return (
     <div>
-      <h1>{`Poll by ${question.author}`}</h1>
+      <div>
+        <h1>{`Poll by ${question.author}`}</h1>
+        <img
+          src={authorUser.avatarURL}
+          alt={`Avatar of ${authorUser.name}`}
+          className="avatar-large"
+        />
+      </div>
       <h3>Would You Rather</h3>
       <div>
         <span
@@ -41,6 +68,16 @@ const Poll = (props) => {
         >
           {question.optionOne.text}
         </span>
+        {!unansweredPoll && (
+          <>
+            <span style={{ paddingLeft: "10px" }}>
+              {optionOneVotes} Vote{optionOneVotes > 1 ? "s" : ""}
+            </span>
+            <span style={{ paddingLeft: "10px" }}>
+              {optionOneVotePercentage}%
+            </span>
+          </>
+        )}
       </div>
       {unansweredPoll && (
         <div>
@@ -56,6 +93,16 @@ const Poll = (props) => {
           >
             {question.optionTwo.text}
           </span>
+          {!unansweredPoll && (
+            <>
+              <span style={{ paddingLeft: "10px" }}>
+                {optionTwoVotes} Vote{optionTwoVotes > 1 ? "s" : ""}
+              </span>
+              <span style={{ paddingLeft: "10px" }}>
+                {optionTwoVotePercentage}%
+              </span>
+            </>
+          )}
         </div>
         {unansweredPoll && (
           <div>
@@ -67,13 +114,14 @@ const Poll = (props) => {
   );
 };
 
-const mapStateToProps = ({ authedUser, questions }, props) => {
+const mapStateToProps = ({ authedUser, questions, users }, props) => {
   const { id } = props.router.params;
   const question = questions[id];
 
   return {
     authedUser,
     question,
+    authorUser: !question ? null : users[question.author],
   };
 };
 
