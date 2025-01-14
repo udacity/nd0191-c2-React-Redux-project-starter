@@ -96,3 +96,16 @@ Your code will talk to the database via 4 methods:
 | qid | String | The id of the question that was answered|
 | answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
 
+5) `_updateUser(object)` Method
+
+*Description*: Update a particular user object in the database. If one of the parameters are missing, an error is thrown.
+*Parameters*: Object that contains the following properties: `id`, `password`, `name`, `avatarURL`, `answers`, and `questions`. More details about these properties:
+
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| id | String | The id of the user to update |
+| password | String | The password of the user to update |
+| name | String | The name of the user to update |
+| avatarURL | String | The avatarURL of the user to update |
+| answers | Object | The answers object of the user to update. Contains elements in the form `"id_question": "optionOne"` or `"id_question": "optionTwo"` |
+| questions | Array | The questions array of the user to update. Contains the list of question IDs asked by the user |

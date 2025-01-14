@@ -211,3 +211,22 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
     }, 500)
   })
 }
+
+export function _updateUser(user) {
+  return new Promise((resolve, reject) => {
+    const keys = ["id", "password", "name", "avatarURL", "answers", "questions"];
+    const allKeyExists = keys.every(key => key in user)
+    if (!allKeyExists) {
+      reject(`Please provide all User fields (${keys})`);
+    }
+
+    setTimeout(() => {
+      users = {
+        ...users,
+        [user.id]: user
+      }
+      
+      resolve(user)
+    }, 500)
+  })
+}
