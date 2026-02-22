@@ -28,7 +28,7 @@ const NewPoll= ({dispatch})=>{
 
   return(
     <div className="flex justify-center items-center min-h-screen bg-gray-900 py-16 px-4">
-     <div className="bg-gray-800 shadow-lx rounded-2xl p-10 w-full max-w-5xl border border-gray-700">
+     <div className="bg-gray-800 shadow-xl rounded-2xl p-10 w-full max-w-5xl border border-gray-700">
       <h3 className="text-3xl font-bold text-center mb-6 text-gray-200">NEW POLL</h3>
 
       <p id="1-opt" className="text-gray-200">First option:</p>
