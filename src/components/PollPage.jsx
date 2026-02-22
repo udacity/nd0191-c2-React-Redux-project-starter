@@ -66,7 +66,7 @@ const PollPage =()=>{
         </div>
         <div className="space-y-4">
           <button onClick={handleOptionOne} disabled={hasVoted}
-              className={`p-3 w-full rounded-xl text-left bg-gray-700 text-gray-200 hover:bg-gray-600 transition" + ${hasVotedForOptionOne ?  "bg-gray-400" : "bg-gray-700"}`}>
+              className={`p-3 w-full rounded-xl text-left text-gray-200 hover:bg-gray-600 transition ${hasVotedForOptionOne ?  "bg-gray-400" : "bg-gray-700"}`}>
             <div className={hasVotedForOptionOne ? "chosen" : ""}>
               <p className="font-bold mb-1">{question.optionOne.text}</p>
               {!hasVoted &&
@@ -78,7 +78,7 @@ const PollPage =()=>{
             </div>
           </button>
           <button onClick={handleOptionTwo} disabled={hasVoted}
-              className={`p-3 w-full rounded-xl text-left bg-gray-700 text-gray-200 hover:bg-gray-600 transition " + ${hasVotedForOptionTwo ? "bg-gray-400" : "bg-gray-700"}`}>
+              className={`p-3 w-full rounded-xl text-left text-gray-200 hover:bg-gray-600 transition ${hasVotedForOptionTwo ? "bg-gray-400" : "bg-gray-700"}`}>
             <p className="font-bold mb-2">{question.optionTwo.text}</p>
             {!hasVoted &&
             <p className="underline underline-offset-4 mb-1">Click</p>
