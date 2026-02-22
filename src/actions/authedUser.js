@@ -15,13 +15,17 @@ export function logoutAuthedUser(){
 
 export function handleLogin(username, password){
   return (dispatch, getState)=>{
-    const {users}=getState();
+    return new Promise((resolve, reject) => {
+      const {users}=getState();
 
-    const user =Object.values(users).find((user)=> user.id === username && user.password === password);
-
-    if(!!user){
-      return dispatch(setAuthedUser(user.id));
-    }
+      const user =Object.values(users).find((user)=> user.id === username && user.password === password);
+      if (user){
+        dispatch(setAuthedUser(user.id));
+        resolve(user);
+      }else{
+        reject("Invalid username or password");
+      }
+    });
   };
 }
 

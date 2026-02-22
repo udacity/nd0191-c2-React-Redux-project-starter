@@ -7,6 +7,7 @@ import {handleLogin} from "../actions/authedUser";
 const Login= ({dispatch, loggedIn})=>{
   const [username, setUsername]=useState("sarahedo");
   const [password, setPassword]=useState("password123");
+  const [error, setError]=useState("");
 
   if(loggedIn){
     const urlParams=new URLSearchParams(window.location.search);
@@ -24,43 +25,47 @@ const Login= ({dispatch, loggedIn})=>{
     setPassword(value);
   };
 
-  const handleSubmit= (e)=>{
+  const handleSubmit=async(e)=>{
       e.preventDefault();
-      dispatch(handleLogin(username, password));
-      setUsername("");
-      setPassword("");
+      setError("");
+      try{
+        await dispatch(handleLogin(username, password))}catch(err){
+        setError(err);}
+      
   };
 
   return(
-    <div>
-      <h1 className="text-3xl font-bold mt-9">Login</h1>
-      
-      <div className="flex justify-center items-center min-h-screen bg-gray-900 py-16 px-4">
-        <div className="bg-gray-800 shadow-lx rounded-2xl p-10 w-full max-w-5xl border border-gray-700">
-          <form onSubmit={handleSubmit}>
-            <input
-            value={username}
-            onChange={handleUsername}
-            type="text"
-            name="username"
-            id="username"
-            data-testid="username"
-            className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400  disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"/>
-            <input
-            value={password}
-            onChange={handlePassword}
-            type="password"
-            name="password"
-            id="password"
-            data-testid="password"
-            className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400  disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"/>
+    <div className="flex justify-center items-center min-h-screen bg-gray-900 py-16 px-4">
+      <div className="bg-gray-800 shadow-xl rounded-2xl p-20 w-full border border-gray-700">
+        <h3 className="text-3xl font-bold text-center mb-10 text-gray-200">LOGING</h3>
+        {error && (
+          <p className="text-red-500 text-center mb-4">
+            {error}
+          </p>
+        )}
+        <form onSubmit={handleSubmit}>
+          <input
+          value={username}
+          onChange={handleUsername}
+          type="text"
+          name="username"
+          id="username"
+          data-testid="username"
+          className="mt-2 p-3 w-full bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 w-full rounded-md sm:text-sm focus:ring-2 resize-none "/>
+          <input
+          value={password}
+          onChange={handlePassword}
+          type="password"
+          name="password"
+          id="password"
+          data-testid="password"
+          className="mt-2 p-3 w-full bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 w-full rounded-md sm:text-sm focus:ring-2 resize-none"/>
 
-            <button
-            type="submit"
-            data-testid="submit"
-            className="bg-white px-5 py-2.5 text-sm leading-5 rounded-md font-semibold text-black">Login</button>
-          </form>
-        </div>
+          <button
+          type="submit"
+          data-testid="submit"
+          className="bg-blue-600 w-full mt-3 py-3 text-sm leading-5 rounded-md font-semibold text-white hover:bg-blue-700">Login</button>
+        </form>
       </div>
     </div>
   );
