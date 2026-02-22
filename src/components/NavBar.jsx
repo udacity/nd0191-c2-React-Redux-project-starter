@@ -1,11 +1,15 @@
 import { handleLogout } from "../actions/authedUser";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const NavBar=({authedUser,dispatch})=>{
+
+  const navigate=useNavigate();
   const logout=(e)=>{
     e.preventDefault();
     dispatch(handleLogout());
+    navigate("/login");
   }
   return(
     <div>

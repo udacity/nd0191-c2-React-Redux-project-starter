@@ -1,9 +1,6 @@
 import {connect} from "react-redux";
 
 const Leaderboard=({users})=>{
-  console.log(users);
-
-
     return (
         <div>
             <h1 className="text-3xl font-bold mt-9 text-gray-200 text-center">Leaderboard</h1>
