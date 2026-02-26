@@ -4,6 +4,7 @@ import NewPoll from "./NewPoll.jsx";
 import PollPage from "./PollPage.jsx";
 import NavBar from "./NavBar.jsx";
 import HomePage from "./HomePage.jsx";
+import PrivateRoute from "./PrivateRoute.jsx";
 import Login from "./Login.jsx";
 import Error from "./Error.jsx";
 import {useEffect, Fragment} from "react";
@@ -23,10 +24,10 @@ function App({dispatch, loggedIn}){
         {loggedIn && <NavBar/>}
         <Routes>
           <Route path="/login" element={<Login/>} />
-          <Route path="/"  element={<HomePage />} />
-          <Route path="questions/:id" element={<PollPage/>} />
-          <Route path="/leaderboard" element={<LeaderBoard/>} />
-          <Route path="/add" element={<NewPoll/>} />
+          <Route path="/"  element={<PrivateRoute><HomePage /></PrivateRoute>} />
+          <Route path="questions/:id" element={<PrivateRoute><PollPage/></PrivateRoute>} />
+          <Route path="/leaderboard" element={<PrivateRoute><LeaderBoard/></PrivateRoute>} />
+          <Route path="/add" element={<PrivateRoute><NewPoll/></PrivateRoute>} />
           <Route path="/404" element={<Error/>}/>
         </Routes>
       </div>
