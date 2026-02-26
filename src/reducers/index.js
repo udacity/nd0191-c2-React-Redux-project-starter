@@ -1,7 +1,7 @@
-import users from './users' ;
-import authedUser from './authedUser';
-import loading from './loading';
-import questions from './questions';
+import users from './users.js' ;
+import authedUser from './authedUser.js';
+import loading from './loading.js';
+import questions from './questions.js';
 import { combineReducers } from 'redux';
 
 export default combineReducers({

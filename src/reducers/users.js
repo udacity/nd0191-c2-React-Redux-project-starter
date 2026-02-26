@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, ADD_QUESTION_USER, ADD_ANSWER_USER} from "../actions/users";
+import { RECEIVE_USERS, ADD_QUESTION_USER, ADD_ANSWER_USER} from "../actions/users.js";
 
 
 export default function users(state={},action){

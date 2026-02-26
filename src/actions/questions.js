@@ -1,6 +1,6 @@
-import { saveQuestion, saveAnswer } from "../utils/api";
-import { hideLoading,showLoading } from "./loading";
-import { addAnswerUser, addQuestionUser } from "./users";
+import { saveQuestion, saveAnswer } from "../utils/api.js";
+import { hideLoading,showLoading } from "./loading.js";
+import { addAnswerUser, addQuestionUser } from "./users.js";
 export const RECEIVE_QUESTIONS="RECEIVE_QUESTIONS";
 export const ADD_QUESTION="ADD_QUESTION";
 export const ADD_ANSWER="ADD_ANSWER";

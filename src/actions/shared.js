@@ -1,6 +1,6 @@
-import {receiveUsers} from "./users";
-import {receiveQuestions} from "./questions";
-import {getInitialData} from "../utils/api";
+import {receiveUsers} from "./users.js";
+import {receiveQuestions} from "./questions.js";
+import {getInitialData} from "../utils/api.js";
 
 
 export function handleInitialData(){

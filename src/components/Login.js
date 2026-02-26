@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {useState} from "react";
-import {handleLogin} from "../actions/authedUser";
+import {handleLogin} from "../actions/authedUser.js";
 
 const Login= ({dispatch, loggedIn})=>{
   const [username, setUsername]=useState("sarahedo");
