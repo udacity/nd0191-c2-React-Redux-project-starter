@@ -29,15 +29,19 @@ const Login= ({dispatch, loggedIn})=>{
       e.preventDefault();
       setError("");
       try{
-        await dispatch(handleLogin(username, password))}catch(err){
-        setError(err);}
-      
+        await dispatch(handleLogin(username, password));
+        
+      }catch(err){
+        setError(err);
+      }
+      setUsername("");
+      setPassword("");
   };
 
   return(
     <div className="flex justify-center items-center min-h-screen bg-gray-900 py-16 px-4">
       <div className="bg-gray-800 shadow-xl rounded-2xl p-20 w-full border border-gray-700">
-        <h3 className="text-3xl font-bold text-center mb-10 text-gray-200">LOGING</h3>
+        <h3 className="text-3xl font-bold text-center mb-10 text-gray-200">LOGIN</h3>
         {error && (
           <p className="text-red-500 text-center mb-4">
             {error}

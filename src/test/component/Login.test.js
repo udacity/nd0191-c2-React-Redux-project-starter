@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 
 import React from "react";
 import {store} from "../../store"
-import {fireEvent, render} from "@testing-library/react";
+import {fireEvent, render, waitFor} from "@testing-library/react";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 import Login from "../../components/Login";
@@ -20,7 +20,7 @@ describe('Login',()=>{
     expect(component).toMatchSnapshot();
   });
 
-  it('will allow user to type username and passwords and clear input elements after clicking button',()=>{
+  it('will allow user to type username and passwords and clear input elements after clicking button',async()=>{
 
     const component=render(
       <Provider store={store}>
@@ -42,9 +42,12 @@ describe('Login',()=>{
     expect(usernameInputElement.value).toBe("sarahedo");
     expect(passwordInputElement.value).toBe("moowdc");
 
-    fireEvent.click(submitButtonElement); 
-    expect(usernameInputElement.value).toBe("");
-    expect(passwordInputElement.value).toBe("");
-
+    
+    fireEvent.click(submitButtonElement);
+    
+    await waitFor(()=>{
+      expect(usernameInputElement.value).toBe("");
+      expect(passwordInputElement.value).toBe("");
+    });
   });
 });
