@@ -18,7 +18,7 @@ const NavBar=({authedUser,dispatch})=>{
           
           <div className="flex items-center space-x-8 text-lg">
             <span
-            className="text-white font-medium">{authedUser?.name}</span>
+            className="text-white font-medium" data-testid="userName">{authedUser?.name}</span>
             <Link className="hover:text-white transition" to="/">Home</Link>
             <Link className="hover:text-white transition" to="/add">NewPoll</Link>
             <Link className="hover:text-white transition"to="/LeaderBoard">Leader Board</Link>

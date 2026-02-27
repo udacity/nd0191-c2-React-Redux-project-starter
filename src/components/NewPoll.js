@@ -36,15 +36,18 @@ const NewPoll= ({dispatch})=>{
       <textarea className="w-full mt-1 p-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
       placeholder="text"
       value={firstOpt}
+      data-testid="option-one-input"
       onChange={handleFirstOpt}></textarea>
 
       <p id="2-opt" className="text-gray-200">Second option:</p>
       <textarea className="w-full mt-1 p-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
       placeholder="text"
       value={secondOpt}
+      data-testid="option-two-input"
       onChange={handleSecondOpt}></textarea>
 
-      <button className="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition" onClick={handleAddbutton}>ADD</button>
+      <button className="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition" data-testid="add"
+      onClick={handleAddbutton}>ADD</button>
       </div>
     </div>
 

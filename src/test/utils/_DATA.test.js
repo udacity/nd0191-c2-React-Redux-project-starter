@@ -13,7 +13,7 @@ describe("Save Question",()=>{
     expect(result.author).toBe("author name");
   });
 
-  it ("will dissplay an error message if optionOneText is not found",async()=>{
+  it ("will display an error message if optionOneText is not found",async()=>{
     const q={
       optionTwoText: "Would you rather 2.",
       author: "author name",
@@ -22,7 +22,7 @@ describe("Save Question",()=>{
 
   });
 
-  it ("will dissplay an error message if optionOneText is not found", async()=>{
+  it ("will display an error message if optionOneText is not found", async()=>{
     const q={
       optionOneText: "Would you rather 1.",
       author: "author name",
@@ -30,7 +30,7 @@ describe("Save Question",()=>{
     await expect(_saveQuestion(q)).rejects.toEqual("Please provide optionOneText, optionTwoText, and author");
   });
 
-  it ("will dissplay an error message if author is not found", async()=>{
+  it ("will display an error message if author is not found", async()=>{
     const q={
       optionTwoText:"Would you rather 1.",
       optionOneText:"Would you rather 2.",

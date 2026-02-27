@@ -94,15 +94,7 @@ const PollPage =()=>{
   );
 
 }
-/*const mapStateToProps=({authedUser, users, questions})=>{
-    try{
-        const question=Object.values(questions).find((question) => question.id===useParams().id);
-        const author =Object.values(users).find((user) => user.id===question.author);
-        return {authedUser, question, author};
-    } catch (e){
-        return <Navigate to="/404"/>;
-    }
-};*/
+
 
 
 export default connect()(PollPage);
