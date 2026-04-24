@@ -1,5 +1,11 @@
-import "@testing-library/jest-dom";
-
+const originalWarn = console.warn;
+console.warn = (...args) => {
+  if (args[0]?.includes?.('React Router Future Flag Warning')) {
+    return;
+  }
+  originalWarn(...args);
+};
+import '@testing-library/jest-dom';
 import React from "react";
 import {store} from "../../store"
 import {fireEvent, render, waitFor} from "@testing-library/react";
@@ -10,19 +16,19 @@ import Login from "../../components/Login";
 
 describe('Login',()=>{
   it('it will matches the snapshot when it renders', ()=>{
-    var component=render(
+    const {container}=render(
       <Provider store={store}>
         <BrowserRouter>
           <Login/>
         </BrowserRouter>
       </Provider>
     );
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('will allow user to type username and passwords and clear input elements after clicking button',async()=>{
 
-    const component=render(
+    const {getByTestId}=render(
       <Provider store={store}>
         <BrowserRouter>
           <Login/>
@@ -30,9 +36,9 @@ describe('Login',()=>{
       </Provider>
     );
 
-    const usernameInputElement=component.getByTestId("username");
-    const passwordInputElement=component.getByTestId("password");
-    const submitButtonElement=component.getByTestId("submit");
+    const usernameInputElement=getByTestId("username");
+    const passwordInputElement=getByTestId("password");
+    const submitButtonElement=getByTestId("submit");
     expect(usernameInputElement).toBeInTheDocument();
     expect(passwordInputElement).toBeInTheDocument();
     expect(submitButtonElement).toBeInTheDocument();

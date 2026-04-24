@@ -1,3 +1,10 @@
+const originalWarn = console.warn;
+console.warn = (...args) => {
+  if (args[0]?.includes?.('React Router Future Flag Warning')) {
+    return;
+  }
+  originalWarn(...args);
+};
 import React from "react";
 import {store} from "../../store"
 import {fireEvent, render, waitFor} from "@testing-library/react";
