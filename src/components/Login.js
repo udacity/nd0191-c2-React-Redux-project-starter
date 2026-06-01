@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Navigate} from "react-router-dom";
+import {Navigate, useLocation} from "react-router-dom";
 import {useState} from "react";
 import {handleLogin} from "../actions/authedUser.js";
 
@@ -8,11 +8,13 @@ const Login= ({dispatch, loggedIn})=>{
   const [username, setUsername]=useState("sarahedo");
   const [password, setPassword]=useState("password123");
   const [error, setError]=useState("");
+  
+  const location=useLocation();
 
   if(loggedIn){
-    const urlParams=new URLSearchParams(window.location.search);
+    const urlParams=new URLSearchParams(location.search);
     const redirectUrl=urlParams.get('redirectTo');
-    return <Navigate to={redirectUrl ? redirectUrl : "/"}/>;
+    return <Navigate to={redirectUrl || "/"} replace />;
   }
 
   const handleUsername=(e)=>{

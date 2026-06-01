@@ -1,10 +1,10 @@
-import {Navigate} from "react-router-dom";
+import {Navigate, useLocation} from "react-router-dom";
 import {connect} from "react-redux";
 
 const PrivateRoute=({children, loggedIn})=>{
-  const redirectUrl=window.location.href.toString().split(window.location.host)[1];
+  const location=useLocation();
 
-  return loggedIn ? children: <Navigate to={`/login?redirectTo=${redirectUrl}`}/>;
+  return loggedIn ? (children): (<Navigate to={`/login?redirectTo=${location.pathname}`} replace/>);
 };
 
 const mapStateToProps=({authedUser})=>({
